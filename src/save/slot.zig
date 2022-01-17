@@ -45,7 +45,7 @@ pub const Slot = packed struct {
         return .empty;
     }
 
-    pub fn makeSimplest() Slot {
+    pub fn makeSimple() Slot {
         var array = [1]u8{0} ** @sizeOf(Slot);
 
         var id: u8 = 0;
@@ -72,6 +72,10 @@ pub const Slot = packed struct {
 // TODO: Check for other possible status values.
 const SlotStatus = union(enum) {
     empty: void,
+    // A "valid" slot is defined as a slot that the game is willing to attempt to load. It does not
+    // mean the slot is an authentic save that can be attained without hacking, and running a valid
+    // slot can still crash the game.
+    //
     // The u32 value represents the save counter of the slot.
     valid: u32,
     invalid: void,

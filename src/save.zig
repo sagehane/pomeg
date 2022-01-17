@@ -22,8 +22,10 @@ pub const Save = packed struct {
     // Offset: 0x1C000
     other: [4]Sector,
 
-    pub fn makeSimplest() Save {
-        const array: [0x20000]u8 = std.mem.toBytes(Slot.makeSimplest()) ++
+    /// A "simple" save is defined as a save file with the bare minimum fields filled out, and the
+    /// rest of the bytes filled with 0s.
+    pub fn makeSimple() Save {
+        const array: [0x20000]u8 = std.mem.toBytes(Slot.makeSimple()) ++
             ([1]u8{0} ** (@sizeOf(Save) - @sizeOf(Slot)));
 
         return @bitCast(Save, array);

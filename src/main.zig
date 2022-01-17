@@ -14,7 +14,7 @@ pub fn main() !void {
 
         if (file_size != 0x20000) {
             std.debug.print(
-                \\The savefile must be 128 KiB in size
+                \\The save file must be 128 KiB in size
                 \\Found: {} KiB
                 \\
             , .{file_size / 0x400});
@@ -39,5 +39,5 @@ pub fn main() !void {
         }
     } else |_| {}
 
-    try cwd.writeFile("simple.sav", &std.mem.toBytes(Save.makeSimplest()));
+    try cwd.writeFile("simple.sav", &std.mem.toBytes(Save.makeSimple()));
 }
